@@ -1,0 +1,61 @@
+.node {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    outline: 1px solid black;
+    font-size: 35px;
+    font-family: "Times New Roman";
+    text-align: center;
+}
+
+.boardCont {
+    width: 540px;
+    height: 540px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 0 2px black;
+}
+
+.r2c2, .r5c2 {
+    box-shadow: -2px -2px 0 0 black inset;
+}
+
+.r2c6, .r5c6 {
+    box-shadow: 2px -2px 0 0 black inset;
+}
+
+.col2:not(.r2c2):not(.r5c2) {
+    box-shadow: -2px 0 0 0 black inset;
+}
+
+.col6:not(.r2c6):not(.r5c6) {
+    box-shadow: 2px 0 0 0 black inset;
+}
+
+.row2:not(.r2c2):not(.r2c6) {
+    box-shadow: 0 -2px 0 0 black inset;
+}
+
+.row5:not(.r5c2):not(.r5c6) {
+    box-shadow: 0 -2px 0 0 black inset;
+}
+
+.title {
+    text-align: center;
+    font-size: 70px;
+}
+
+.buttonCont {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    width: 182px;
+    height: 60px;
+}
