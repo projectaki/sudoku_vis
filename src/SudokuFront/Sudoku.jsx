@@ -2,105 +2,166 @@ import React from "react";
 import { solve } from "../SudokuBack/algorithms";
 import "./Sudoku.css";
 
+
+
 export default class Sudoku extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            grid: [],
         
+        this.state = {
+            board: [],
+            upload: [],
+            result: [],
         };
     }
 
     componentDidMount() {
         this.refresh();
-        
+        var M = window.M;
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, []);
+        var elem = document.getElementById("modal1");
+        var instance = M.Modal.getInstance(elem);
+        instance.open();
     }
 
     refresh() {
-        const grid = createGrid();
-        this.setState({grid});
-        this.setUpNumbers(0);
+        this.setState({board: fillBoard()});
+        this.setupBoard(this.state.board);
     }
 
-    async setUpNumbers(ms) {
+    setupBoard(board) {
         
         const elems = document.getElementsByClassName("node");
-        for (let i = 0; i < this.state.grid.length; i++) {
-            for (let j = 0; j < this.state.grid.length; j++) {
-                let index = coordMap(i, j);
-                if (this.state.grid[i][j] !== 0) {
-                    elems[index].innerHTML = this.state.grid[i][j];
-                }
-                else {
-                    elems[index].innerHTML = "";
-                }
-                if (ms !== 0) {
-                    await delay(ms);
-                }
+        for (let i = 0; i < board.length; i++) {
+            if(board[i] !== 0) {
+                elems[i].innerHTML = board[i];
+            }
+            else {
+                elems[i].innerHTML = "";
             }
             
         }
     }
 
-    hardest() {
-        hardestBoard(this.state.grid);
-        this.setUpNumbers(0);
+
+    //remove newlines etc from file to make a only number array of length 81
+    filterUpload() {
+        const grid = [];
+        var upload = this.state.upload;
+        // create hashmap of number strings from 0-9
+        const numbers = new Set();
+        for(let i = 0; i < 10; i++) {
+            numbers.add(i.toString());
+        }
+        // if strign at i is number at to grid
+        for (let i = 0; i < upload.length; i++) {
+            if(numbers.has(upload[i])) {
+                grid.push(parseInt(upload[i]));
+            }
+            
+        }
+        this.setState({board: grid});
     }
 
-    solve() {
-        const grid = solve(this.state.grid);
-        this.setState({grid});
-        this.setUpNumbers(20);
+
+    async solve() {
+        const grid = solve(this.state.board);
+        this.setState({result: grid});
+        await delay(1);
+        this.setupBoard(this.state.result);
+    }
+
+    handleChangeFile = (file) => {
+        let fileData = new FileReader();
+        fileData.onloadend = this.handleFile;
+        fileData.readAsText(file);
+    }
+
+    handleFile = (e) => {
+        const content = e.target.result;
+        this.setState({upload: content});
+        this.filterUpload();
+        this.setupBoard(this.state.board);
     }
 
 
     render() {
-        const {grid} = this.state;
-        
+        const {board} = this.state;
+        const grid = [];
+        for(let i = 0; i < board.length; i++) {
+            grid.push(<div key={i} className={"node " + "r"+Math.floor(i/9)+"c"+i%9 + " " + "row"+Math.floor(i/9) + " " + "col"+ i%9  }></div>);
+        }
+
         return (
             <>
-            <div className="title">
-                SUDOKU SOLVER
-            </div>
+            <div className="back-btn" style={{position: "absolute", padding: 0, margin: 0}}>
+                        <a href="https://projectaki.github.io/portfolio_akos_madarasz/#/Projects" style={{color: "black"}} >
+                            <i class="fas fa-arrow-left fa-2x"></i>
+                        </a>
+                    </div>
                 <div className="boardCont">
-                    {grid.map((row, rowid) => {
-                        return row.map( (node, nodeid) => { 
-                                return <div key={nodeid} className={"node " + "r"+rowid+"c"+nodeid + " " + "col"+nodeid + " " + "row"+rowid}></div>; 
-                        });
-                    })}    
+                    {grid}    
                 </div>
 
                 <div class="buttonCont">
-                    <button onClick={() => this.refresh()}>Refresh</button>
-                    <button onClick={() => this.solve()}>Solve</button>
-                    <button onClick={() => this.hardest()}>hardest</button>
+                    <div>
+                    <input style={{ fontSize: "1.5vmin", color: "white"}} type="file"
+                    name="myFile"
+                    accept=".txt"
+                    onChange={e => 
+                        this.handleChangeFile(e.target.files[0])}/>
+                    </div>
+                    <div style={{paddingTop: "2vmin"}}>
+                        <button onClick={() => this.solve()}>Solve</button>
+                        
+                    </div>
+                    
+                
+                    
+
                 </div>
                 
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                    <h4 style={{fontSize: "2vmin"}}>Instruction</h4>
+                    <p style={{fontSize: "1.5vmin"}}>Upload a txt file of a 9x9 sudoku then press solve!
+    
+                    </p>
+                    <p style={{fontSize: "1.5vmin"}}>Limitations: for now it is only solving 9x9 sudokus, and the board must be in a format
+                        where the empty spaces are represented by 0s
+    
+                    </p>
+                    <p style={{fontSize: "1.5vmin"}}>
+                            For example:<br/>
+                            003020600<br/>
+                            900305001<br/>
+                            001806400<br/>
+                            008102900<br/>
+                            700000008<br/>
+                            006708200<br/>
+                            002609500<br/>
+                            800203009<br/>
+                            005010300
+                    </p>
+                    
+                    </div>
+                    
+                </div>
                 
                 
             </>
             
         )
     }
-
-
-
-
-
-
 }
 
-function createGrid() {
-    const grid = [];
-    for (let row = 0; row < 9; row++) {
-        const currentRow = [];
-        for (let col = 0; col < 9; col++) {
-            currentRow.push(0);
-        }
-        grid.push(currentRow);
+function fillBoard() {
+    const board = [];
+    for(let i = 0; i < 81; i++) {
+        board.push(0);
     }
-    return grid;
+    return board;
 }
 
 function coordMap(i , j) {
@@ -115,27 +176,3 @@ function delay(n) {
       }, n);
     });
   }
-
-function hardestBoard(SUDOKU) {
-    SUDOKU[0][0] = 8;
-    SUDOKU[1][2] = 3;
-    SUDOKU[1][3] = 6;
-    SUDOKU[2][1] = 7;
-    SUDOKU[2][4] = 9;
-    SUDOKU[2][6] = 2;
-    SUDOKU[3][1] = 5;
-    SUDOKU[3][5] = 7;
-    SUDOKU[4][4] = 4;
-    SUDOKU[4][5] = 5;
-    SUDOKU[4][6] = 7;
-    SUDOKU[5][3] = 1;
-    SUDOKU[5][7] = 3;
-    SUDOKU[6][2] = 1;
-    SUDOKU[6][7] = 6;
-    SUDOKU[6][8] = 8;
-    SUDOKU[7][2] = 8;
-    SUDOKU[7][3] = 5;
-    SUDOKU[7][7] = 1;
-    SUDOKU[8][1] = 9;
-    SUDOKU[8][6] = 4;
-}

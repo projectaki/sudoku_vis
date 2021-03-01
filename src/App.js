@@ -1,8 +1,12 @@
 import Sudoku from "./SudokuFront/Sudoku.jsx";
-
+import Navbar from "./components/Navbar";
 function App() {
   return (
-    <Sudoku></Sudoku>
+    <>
+    <Navbar/>
+    <Sudoku/>
+    
+        </>
   );
 }
 

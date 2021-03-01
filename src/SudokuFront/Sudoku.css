@@ -1,61 +1,102 @@
+
+
 .node {
-    width: 60px;
-    height: 60px;
+    width: 7vmin;
+    height: 7vmin;
     background-color: white;
-    outline: 1px solid black;
-    font-size: 35px;
-    font-family: "Times New Roman";
+    outline: 0.2vmin solid black;
+    font-size: 4vmin;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
     text-align: center;
 }
 
 .boardCont {
-    width: 540px;
-    height: 540px;
+    background-color: lightblue;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto;
-    text-align: center;
-    margin-top: 0;
+    grid-template-columns: repeat(9, 1fr);
+    width: 69vmin;
+    margin-top: 7vmin;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 0 0 2px black;
+    box-shadow: 0 0 0 1vmin black;
+    padding-bottom: 3vmin;
+    padding-top: 3vmin;
+    padding-left: 3vmin;
+    padding-right: 3vmin;
+    
 }
 
-.r2c2, .r5c2 {
-    box-shadow: -2px -2px 0 0 black inset;
+
+
+.col2:not(.row2, .row5, .row3, .row6), .col5:not(.row2, .row5, .row3, .row6) {
+    box-shadow: -0.5vmin 0 0 0 black inset;
 }
 
-.r2c6, .r5c6 {
-    box-shadow: 2px -2px 0 0 black inset;
+.col3:not(.row2, .row5, .row3, .row6), .col6:not(.row2, .row5, .row3, .row6) {
+    box-shadow: 0.5vmin 0 0 0 black inset;
 }
 
-.col2:not(.r2c2):not(.r5c2) {
-    box-shadow: -2px 0 0 0 black inset;
+.row2:not(.col2, .col5, .col3, .col6), .row5:not(.col2, .col5, .col3, .col6) {
+    box-shadow: 0 -0.5vmin 0 0 black inset;
 }
 
-.col6:not(.r2c6):not(.r5c6) {
-    box-shadow: 2px 0 0 0 black inset;
+.row3:not(.col2, .col5, .col3, .col6), .row6:not(.col2, .col5, .col3, .col6) {
+    box-shadow: 0 0.5vmin 0 0 black inset;
 }
 
-.row2:not(.r2c2):not(.r2c6) {
-    box-shadow: 0 -2px 0 0 black inset;
+.r2c2, .r2c5, .r5c2, .r5c5 {
+    box-shadow: -0.5vmin -0.5vmin 0 0 black inset;
 }
 
-.row5:not(.r5c2):not(.r5c6) {
-    box-shadow: 0 -2px 0 0 black inset;
+.r3c2, .r3c5, .r6c2, .r6c5 {
+    box-shadow: -0.5vmin 0.5vmin 0 0 black inset;
+}
+
+.r2c3, .r2c6, .r5c3, .r5c6 {
+    box-shadow: 0.5vmin -0.5vmin 0 0 black inset;
+}
+
+.r3c3, .r3c6, .r6c3, .r6c6 {
+    box-shadow: 0.5vmin 0.5vmin 0 0 black inset;
 }
 
 .title {
-    text-align: center;
-    font-size: 70px;
+    font-size: 3vmin;
 }
+
 
 .buttonCont {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5vmin;
 }
 
 button {
-    width: 182px;
-    height: 60px;
+    font-size: 2vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    border-radius: 1vmin;
+    background-color: lightblue;
+    border: 0.1vmin solid black;
+}
+
+.back-btn {
+    top: 1.5vmin;
+    left: 1.5vmin;
+    font-size: 2vmin;
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 5vmin;
+    }
+
+    .back-btn {
+        top: 8vmin;
+        left: 6vmin;
+        font-size: 4vmin;
+    }
 }

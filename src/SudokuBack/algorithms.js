@@ -5,9 +5,25 @@ var n = 9;
 var result = [];
 
 export const solve = (grid) => {
-    board = grid;
+    let row = [];
+    for(let i = 0; i < n*n; i++) {
+        if(i%n === 8) {
+            row.push(grid[i]);
+            board.push(row);
+            row = [];
+        }
+        else {
+            row.push(grid[i]);
+        }
+    }
     recurse(0);
-    return result;
+    const res = [];
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            res.push(result[i][j]);
+        }
+    }
+    return res;
 }
 
 
