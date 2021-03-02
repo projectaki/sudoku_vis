@@ -16,7 +16,6 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     width: 69vmin;
-    margin-top: 7vmin;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
@@ -81,6 +80,20 @@ button {
     border-radius: 1vmin;
     background-color: lightblue;
     border: 0.1vmin solid black;
+    font-family: Alegreya sans;
+}
+
+
+@media screen and (max-width: 500px) {
+
+}
+
+.navbar {
+    height: 7vmin;
+    width: 100vw;
+    background-color: rgb(55,181,255);
+    text-align: center;
+    top: 0;
 }
 
 .back-btn {
@@ -89,14 +102,12 @@ button {
     font-size: 2vmin;
 }
 
-@media screen and (max-width: 500px) {
-    .title {
-        font-size: 5vmin;
-    }
-
-    .back-btn {
-        top: 8vmin;
-        left: 6vmin;
-        font-size: 4vmin;
-    }
+@font-face {
+    font-family: League Spartan;
+    src: url("../fonts/LeagueSpartan-Bold.otf");
+  }
+  
+@font-face {
+    font-family: Alegreya Sans;
+    src: url("../fonts/AlegreyaSans-Regular.ttf");
 }

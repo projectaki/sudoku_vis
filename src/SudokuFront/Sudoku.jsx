@@ -96,10 +96,14 @@ export default class Sudoku extends React.Component {
         return (
             <>
             <div className="back-btn" style={{position: "absolute", padding: 0, margin: 0}}>
-                        <a href="https://projectaki.github.io/portfolio_akos_madarasz/#/Projects" style={{color: "black"}} >
-                            <i class="fas fa-arrow-left fa-2x"></i>
-                        </a>
-                    </div>
+                <a href="https://projectaki.github.io/portfolio_akos_madarasz/#/Projects" style={{color: "black"}} >
+                    <i class="fas fa-arrow-left fa-2x"></i>
+                </a>
+            </div>
+            <div style={{textAlign: "center", marginBottom: "2vmin", marginTop:"2vmin"}}>
+                <button onClick={() => this.solve()}>Solve</button>
+            </div>
+            
                 <div className="boardCont">
                     {grid}    
                 </div>
@@ -113,7 +117,7 @@ export default class Sudoku extends React.Component {
                         this.handleChangeFile(e.target.files[0])}/>
                     </div>
                     <div style={{paddingTop: "2vmin"}}>
-                        <button onClick={() => this.solve()}>Solve</button>
+                        
                         
                     </div>
                     
