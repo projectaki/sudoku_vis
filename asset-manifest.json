@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/sudoku_vis/static/css/main.40034e19.chunk.css",
-    "main.js": "/sudoku_vis/static/js/main.443838cc.chunk.js",
-    "main.js.map": "/sudoku_vis/static/js/main.443838cc.chunk.js.map",
+    "main.css": "/sudoku_vis/static/css/main.524680bd.chunk.css",
+    "main.js": "/sudoku_vis/static/js/main.fe69172c.chunk.js",
+    "main.js.map": "/sudoku_vis/static/js/main.fe69172c.chunk.js.map",
     "runtime-main.js": "/sudoku_vis/static/js/runtime-main.1530e9e5.js",
     "runtime-main.js.map": "/sudoku_vis/static/js/runtime-main.1530e9e5.js.map",
     "static/js/2.358df19f.chunk.js": "/sudoku_vis/static/js/2.358df19f.chunk.js",
@@ -10,13 +10,14 @@
     "static/js/3.470f2a34.chunk.js": "/sudoku_vis/static/js/3.470f2a34.chunk.js",
     "static/js/3.470f2a34.chunk.js.map": "/sudoku_vis/static/js/3.470f2a34.chunk.js.map",
     "index.html": "/sudoku_vis/index.html",
-    "static/css/main.40034e19.chunk.css.map": "/sudoku_vis/static/css/main.40034e19.chunk.css.map",
-    "static/js/2.358df19f.chunk.js.LICENSE.txt": "/sudoku_vis/static/js/2.358df19f.chunk.js.LICENSE.txt"
+    "static/css/main.524680bd.chunk.css.map": "/sudoku_vis/static/css/main.524680bd.chunk.css.map",
+    "static/js/2.358df19f.chunk.js.LICENSE.txt": "/sudoku_vis/static/js/2.358df19f.chunk.js.LICENSE.txt",
+    "static/media/Sudoku.css": "/sudoku_vis/static/media/LeagueSpartan-Bold.caadcad8.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.1530e9e5.js",
     "static/js/2.358df19f.chunk.js",
-    "static/css/main.40034e19.chunk.css",
-    "static/js/main.443838cc.chunk.js"
+    "static/css/main.524680bd.chunk.css",
+    "static/js/main.fe69172c.chunk.js"
   ]
 }
